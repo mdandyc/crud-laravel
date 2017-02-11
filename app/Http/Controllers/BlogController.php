@@ -47,6 +47,8 @@ class BlogController extends Controller
                 $blog->subject = $request->subject;
                 $blog->save();
 
+                return redirect ('blog')->with('message','Blog Sudah Di Updated!');
+
     }
 
     /**
