@@ -74,7 +74,11 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog=Blog::find($id);
+        if (!$blog) {
+            abort(404);
+        }
+        return view('blog.edit')->with('blog',$blog);
     }
 
     /**
@@ -86,7 +90,20 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $this->validate($request, [
+        'title' => 'required|unique:blog|max:15|min:5',
+        'subject' => 'required',
+        ]);
+
+                $blog=Blog::find($id);
+
+                $blog->title = $request->title;
+                $blog->subject = $request->subject;
+                $blog->save();
+
+                return redirect ('blog')->with('message','Blog Sudah Di Edit!');
+
     }
 
     /**
@@ -97,6 +114,8 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blog=Blog::find($id);
+        $blog->delete();
+        return redirect('blog')->with('message','blog sudah dihapus');
     }
 }
