@@ -59,7 +59,11 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        $blog=Blog::find($id);
+        if (!$blog) {
+            abort(404);
+        }
+        return view('blog.single')->with('blog',$blog);
     }
 
     /**
