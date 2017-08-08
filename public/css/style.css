@@ -1,0 +1,14 @@
+.table{
+
+	margin:0 0 0 500px;
+	width: 50%;
+}
+.formbuku{
+	width: 50%;
+	margin-left: 500px;
+}
+.pagination li span{
+	color:#fff;
+	padding:0 10px;
+	font-size: 18px;
+}

@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('buku', 'BukuController');
+Route::post('buku/search','BukuController@search');
+Route::resource('penerbit', 'PenerbitController');
+Route::post('penerbit/search','PenerbitController@search');
+Route::resource('stockbuku', 'StockBukuController');
+Route::Post('stockbuku/search','StockBukuController@search');
+Auth::routes();
 
-Route::resource('blog', 'BlogController');
+Route::get('/', 'StockBukuController@index');
